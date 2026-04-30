@@ -1,18 +1,6 @@
-# main links links
 main:
   - title: "Research"
     url: /projects/
 
-  - title: "Teaching"
-    url: /teaching/  
-  
-  # - title: "CV"
-  #   url: /cv/
-
-  # - title: "Blog Posts"
-  #   url: /year-archive/
-    
-  # - title: "Codes and Useful links"
-  #   url: /others/    
-    
- 
+  - title: "Contact"
+    url: /contact/
