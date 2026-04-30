@@ -11,37 +11,39 @@
 # https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/#installing-the-theme
 # theme                  : "minimal-mistakes-jekyll"
 # remote_theme           : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin  : "sunrise"  # ,"air""contrast" "aqua", "contrast", "mint""dark", "dirt", "neon",, "plum", 
+minimal_mistakes_skin  : "sunrise"  # "air", "contrast", "aqua", "mint", "dark", "dirt", "neon", "plum"
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Yang Pei (裴扬)"
+title                    : "Wei Jin (金威)"
 title_separator          : "-"
-name                     : &name "Yang Pei (裴扬)"
-description              : &description " Postdoctoral Research Fellow at Tsinghua University "
-url                      : https://ypei1.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
-baseurl                  : "" # the subpath of your site, e.g. "/blog"
-repository               : "ypei1.github.io"
-teaser                   :  # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
+name                     : &name "Wei Jin (金威)"
+description              : &description "Assistant Professor at the School of Economics, Nankai University. Research fields: International Economics, International Trade, and International Business."
+url                      : "https://weijinsite.github.io"
+baseurl                  : ""
+repository               : "weijinsite/weijinsite.github.io"
+teaser                   :
 logo                     : "/images/smalltitle.png"
-breadcrumbs              : false # true, false (default)
+breadcrumbs              : false
 words_per_minute         : 160
 future                   : true
-read_more                : "disabled" # if enabled, adds "Read more" links to excerpts
-talkmap_link             : false #change to true to add link to talkmap on talks page
+read_more                : "disabled"
+talkmap_link             : false
+
 comments:
-  provider               : # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "custom"
+  provider               :
   disqus:
     shortname            :
   discourse:
-    server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
+    server               :
   facebook:
     appid                :
-    num_posts            : 100 # (default)
-    colorscheme          : # "light" (default), "dark"  
+    num_posts            : 100
+    colorscheme          :
+
 staticman:
   allowedFields          : ['name', 'email', 'url', 'message']
-  branch                 : "gh-pages" # "master", "gh-pages"
+  branch                 : "gh-pages"
   commitMessage          : "New comment."
   filename               : comment-{@timestamp}
   format                 : "yml"
@@ -49,14 +51,15 @@ staticman:
   path                   : "_data/comments/{options.slug}"
   requiredFields         : ['name', 'email', 'message']
   transforms:
-    email                : "wspyasx@gmail.com"
+    email                : "md5"
   generatedFields:
     date:
       type               : "date"
       options:
-        format           : "iso8601" # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
+        format           : "iso8601"
+
 atom_feed:
-  path                   : # blank (default) uses feed.xml
+  path                   :
 
 # SEO Related
 google_site_verification :
@@ -71,51 +74,57 @@ facebook:
   username               :
   app_id                 :
   publisher              :
-og_image                 :  # Open Graph/Twitter default site image
-# For specifying social profiles
-# - https://developers.google.com/structured-data/customize/social-profiles
-social:
-  type                   : # Person or Organization (defaults to Person)
-  name                   : # If the user or organization name differs from the site's name
-  links: # An array of links to social media profiles
+og_image                 :
 
+# For specifying social profiles
+social:
+  type                   : "Person"
+  name                   : "Wei Jin"
+  links:
+    - "https://weijinsite.github.io"
 
 # Analytics
 analytics:
-  provider               :  "google-universal" # false (default), "google", "google-universal", "custom"
+  provider               : "google-universal"
   google:
     tracking_id          :
 
-
 # Site Author
 author:
-  name             : "Yang Pei (裴扬)"
+  name             : "Wei Jin (金威)"
   avatar           : "profile.png"
-  bio: "Tsinghua University"
-  location: "Beijing"
-  location_url: "https://www.google.com/maps/place/Houston,+TX"
-  employer         :
-  pubmed           : 
-  googlescholar    : 
-  email            : ypei1.work@gmail.com
-  researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
-  uri              :
-  github           : "ypei1"
+  bio              : "Assistant Professor, School of Economics, Nankai University"
+  location         : "Tianjin, China"
+  location_url     : "https://www.google.com/maps/search/?api=1&query=School+of+Economics%2C+Nankai+University%2C+No.+94+Weijin+Road%2C+Nankai+District%2C+Tianjin+300071%2C+China"
+  employer         : "Nankai University"
+  email            : "wei.jin.economics@gmail.com"
+  uri              : "https://weijinsite.github.io"
+  github           : "weijinsite"
+  googlescholar    :
+  pubmed           :
+  researchgate     :
   google_plus      :
-  impactstory      : #"https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
-  linkedin         :  
-  orcid            : #"http://orcid.org/yourorcidurl"
-  stackoverflow    : # http://stackoverflow.com/users/123456/username
-  twitter          : "yangpei1009"
+  impactstory      :
+  linkedin         :
+  orcid            :
+  stackoverflow    :
+  twitter          :
   youtube          :
   wikipedia        :
 
+# Contact Information
+contact:
+  email_primary     : "wei.jin.economics@gmail.com"
+  email_secondary   : "wei.jin.economics@foxmail.com"
+  email_nankai      : "wei.jin@nankai.edu.cn"
+  address           : "School of Economics, Nankai University, No. 94 Weijin Road, Nankai District, Tianjin 300071, P.R. China"
 
 # Reading Files
 include:
   - .htaccess
   - _pages
   - files
+
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
@@ -140,12 +149,13 @@ exclude:
   - package.json
   - tmp
   - vendor
+
 keep_files:
   - .git
   - .svn
+
 encoding: "utf-8"
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
-
 
 # Conversion
 markdown: kramdown
@@ -153,7 +163,6 @@ highlighter: rouge
 lsi: false
 excerpt_separator: "\n\n"
 incremental: false
-
 
 # Markdown Processing
 kramdown:
@@ -166,7 +175,6 @@ kramdown:
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
 
-
 # Collections
 collections:
   teaching:
@@ -175,9 +183,6 @@ collections:
   papers:
     output: true
     permalink: /:collection/:path/
-  #publications:
-   # output: true
-    #permalink: /:collection/:path/
 
 # Defaults
 defaults:
@@ -192,6 +197,7 @@ defaults:
       comments: true
       share: true
       related: true
+
   # _pages
   - scope:
       path: ""
@@ -199,24 +205,7 @@ defaults:
     values:
       layout: single
       author_profile: true
-  # _teaching
-  #- scope:
-   #   path: ""
-   #   type: teaching
-  #  values:
-   #   layout: single
-   #   author_profile: true
-   #   share: true
-   #   comments: true
-  # _publications
- # - scope:
- #     path: ""
-  #    type: publications
- #   values:
-  #    layout: single
-  #    author_profile: true
-  #    share: true
-   #   comments: true
+
   # _papers
   - scope:
       path: ""
@@ -226,19 +215,14 @@ defaults:
       author_profile: true
       share: true
 
-
 # Sass/SCSS
 sass:
   sass_dir: _sass
-  style: compressed # http://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
-
+  style: compressed
 
 # Outputting
 permalink: /:categories/:title/
-# paginate: 5 # amount of posts to show
-# paginate_path: /page:num/
-timezone: America/Chicago # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-
+timezone: Asia/Shanghai
 
 # Plugins
 plugins:
@@ -247,7 +231,8 @@ plugins:
   - jekyll-gist
   - jekyll-feed
   - jekyll-redirect-from
-# mimic GitHub Pages with --safe
+
+# Mimic GitHub Pages with --safe
 whitelist:
   - jekyll-paginate
   - jekyll-sitemap
@@ -255,44 +240,21 @@ whitelist:
   - jekyll-feed
   - jemoji
 
-
 # Archives
-#  Type
-#  - GitHub Pages compatible archive pages built with Liquid ~> type: liquid (default)
-#  - Jekyll Archives plugin archive pages ~> type: jekyll-archives
-#  Path (examples)
-#  - Archive page should exist at path when using Liquid method or you can
-#    expect broken links (especially with breadcrumbs enabled)
-#  - <base_path>/tags/my-awesome-tag/index.html ~> path: /tags/
-#  - <base_path/categories/my-awesome-category/index.html ~> path: /categories/
-#  - <base_path/my-awesome-category/index.html ~> path: /
 category_archive:
   type: liquid
   path: /categories/
+
 tag_archive:
   type: liquid
   path: /tags/
-# https://github.com/jekyll/jekyll-archives
-# jekyll-archives:
-#   enabled:
-#     - categories
-#     - tags
-#   layouts:
-#     category: archive-taxonomy
-#     tag: archive-taxonomy
-#   permalinks:
-#     category: /categories/:name/
-#     tag: /tags/:name/
-
 
 # HTML Compression
-# - http://jch.penibelst.de/
 compress_html:
   clippings: all
   ignore:
     envs: development
 
-
-# Add this at the bottom or somewhere under 'Site Settings'
+# Theme toggle
 toggle:
   theme: true
