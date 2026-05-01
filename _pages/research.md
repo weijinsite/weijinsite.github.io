@@ -23,7 +23,7 @@ My research fields are international economics, international trade, and interna
 
 - *The Dynamic Trade and Welfare Effects of RCEP*, with Chenxin Jin, Bin Sheng, Zhen Sun, and Bing Yan <br>
  **Journal of International Money and Finance**, 2025, Volume 154, 103329 <br>
-  [Article](https://doi.org/10.1016/j.jimonfin.2025.103329) | [Code & Data](https://www.dropbox.com/scl/fo/w6dbils8xjf10fr8gqibk/AMtfjBWOLOKkPIlLHR6OZRM?rlkey=i8qoeykv9mpq50hvnx6gu8vqk&st=q6u86usq&dl=0) | [Working Paper](https://www.dropbox.com/scl/fi/3fm59bd91nf7vpctzz0oq/2024-RCEP.pdf?rlkey=zbe93i269nnw79i2paljm5nr7&st=61lcfyoe&dl=0) | [Online Appendix](https://www.dropbox.com/scl/fi/a24eeyv9ec4q5wg4ba0vj/RCEP_Appendix.pdf?rlkey=enviohpru8ubxqzjvupjrml24&st=fu4jvlht&dl=0)
+  [Article](https://doi.org/10.1016/j.jimonfin.2025.103329) | [Code & Data](https://www.dropbox.com/scl/fi/gnt6953re9br7te91qsny/RCEPcode_202503.zip?rlkey=uqzglw5f865gmhpo5qwvwpetc&dl=0) | [Working Paper](https://www.dropbox.com/scl/fi/4a7s8a77ljh2dxx36yyjv/RCEP-wp.pdf?rlkey=1bunbxbjbzgs9s2a41l5ll4uv&dl=0) | [Online Appendix](https://www.dropbox.com/scl/fi/agn2la1tudcjyfg6sscwt/RCEP-Online-Appendix.pdf?rlkey=1l8bd5pzrq3hfzitg5r0s91mf&dl=0)
 
 - *Comparative Advantage and Optimal Trade Policy with Strategic Interactions*, with Mengmeng Dai, Wen-Tai Hsu, Yongjin Wang, and Siqiang Yang <br>
  **International Journal of Industrial Organization**, 2026, Volume 104, 103236 <br>
