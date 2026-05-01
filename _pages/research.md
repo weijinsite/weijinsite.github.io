@@ -19,7 +19,7 @@ My research fields are international economics, international trade, and interna
 
 - *Geopolitics along the Value Chains*, with Renjing Chen, Chenxin Jin, Bin Sheng, and Guanxiang Wang <br>
  **China Economic Review**, 2025, Volume 90, 102341 <br>
-  [Article](https://doi.org/10.1016/j.chieco.2025.102341) | [Code & Data](https://www.dropbox.com/scl/fo/f3hqg20zowxubvgcx7xhk/APWuCReL3nH3H5TPpFYgPQU?rlkey=ev1p0q4thwav43otr9p2pvjec&e=2&st=syfexavc&dl=0) | [Working Paper](https://www.dropbox.com/scl/fi/fb9gkyf8mfj8l6e27it0z/geopolitics_along_value_chains.pdf?rlkey=q5iumg85w80nkzte8xlqa7ypy&st=msye9mca&dl=0) | [Online Appendix](https://www.dropbox.com/scl/fi/w1ufqfdu58ubt6dokq4wv/2024Geopolitics_Appendix.pdf?rlkey=on0cpqnl5lmgfvogma1uzh4e7&st=8cljglzy&dl=0)
+  [Article](https://doi.org/10.1016/j.chieco.2024.102341) | [Code & Data](https://www.dropbox.com/scl/fi/f9qovdv8sye3qgw1ypedd/CER_GVC_Replication.rar?rlkey=4yizirpj5hj2bdaeyqq53p077&dl=0) | [Working Paper](https://www.dropbox.com/scl/fi/kbjgr83am8qgoiv2vgw3a/geopolitics-paper-wp.pdf?rlkey=yxmlznjjl94uwn67mj50u88g1&dl=0) | [Online Appendix](https://www.dropbox.com/scl/fi/3owb8w8vm17rnpu0wh13b/Appendix.pdf?rlkey=eyctrq80ifoig23r12on85xxv&dl=0)
 
 - *The Dynamic Trade and Welfare Effects of RCEP*, with Chenxin Jin, Bin Sheng, Zhen Sun, and Bing Yan <br>
  **Journal of International Money and Finance**, 2025, Volume 154, 103329 <br>
