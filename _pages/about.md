@@ -52,13 +52,8 @@ Here is my <a href="/files/Wei_Jin_CV.pdf">CV</a>.
 
 - *Diligence Redeems Stupidity: Managerial Effort Makes a Difference*, with Renjing Chen, Yuting Chen, Meng Gao, and Jiantong Li.
 
-### Contact
+### Education
 
-Email: wei.jin.economics [at] gmail.com  
-Email: wei.jin.economics [at] foxmail.com  
-Email: wei.jin [at] nankai.edu.cn  
-
-Address:  
-School of Economics, Nankai University  
-No. 94 Weijin Road, Nankai District  
-Tianjin 300071, P.R. China
+- Ph.D. in Economics, Singapore Management University, Singapore 2013–2018
+- M.S. in Economics, University of Macau, Macau 2011–2013
+- B.A. in Management, Central University of Finance and Economics, Beijing 2007–2011
