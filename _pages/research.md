@@ -34,6 +34,12 @@ with Mengmeng Dai, Wen-Tai Hsu, Yongjin Wang, and Siqiang Yang <br>
  **International Journal of Industrial Organization**, 2026, Volume 104, 103236 <br>
   [Article](https://doi.org/10.1016/j.ijindorg.2025.103236) | [Code & Data](https://doi.org/10.7910/DVN/CV247A)
 
+- *Yesterday Once More: The Impacts of Environmental Regulations on Multinational Corporations' Reinvestment Allocation in China*<br>
+with Bing Yan, Shaoyu Guo, and Xiaojing Jiang<br>
+**Journal of Environmental Economics and Management**, 2026, Volume 138,  103337 <br>
+  [Article](https://doi.org/10.1016/j.jeem.2026.103337)  
+
+  
 - *The Depth of Preferential Trade Agreements* <br>
 with Pao-Li Chang and Kefang Yao <br>
  **IMF Economic Review**, 2026  <br>
@@ -65,7 +71,6 @@ with Bing Yan, Meng Gao, Qiugu He, Siqiang Yang, and Renjia Zhang <br>
 
 ### Working Papers
 
-- *Yesterday Once More: The Impacts of Environmental Regulations on Multinational Corporations' Reinvestment Allocation in China*, with Bing Yan, Shaoyu Guo, and Xiaojing Jiang, R&R at **Journal of Environmental Economics and Management**.
 
 - *Guns and Gravity: Is There a Home-Market Effect in the Global Arms Trade?*, with Meng Gao, Chenxin Jin, Chaodui Shao, Danni Su, Guanxiang Wang, and Mingyang Wei, R&R at **Review of International Economics**.
 
