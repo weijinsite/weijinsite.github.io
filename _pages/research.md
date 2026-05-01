@@ -9,12 +9,12 @@ My research fields are international economics, international trade, and interna
 
 ### Publications
 
-- *Good Names Beget Favors: The Impact of Country Image on Trade Flows and Welfare*, with Pao-Li Chang and Tomoki Fujii,
-   **Management Science**, 2022, 68(10): 7555–7596.  
+- *Good Names Beget Favors: The Impact of Country Image on Trade Flows and Welfare*, with Pao-Li Chang and Tomoki Fujii,<br>
+   **Management Science**, 2022, 68(10): 7555–7596. <br> 
   [Article](https://doi.org/10.1287/mnsc.2021.4231) | [Code & Data](https://www.dropbox.com/sh/od4sclctfej10tn/AACrqBOHE7LjCYAWYt1Av1tUa?dl=0) | [Working Paper](https://www.dropbox.com/scl/fi/5vlhq9o2o3937yvxmoenn/2017-16.pdf?rlkey=l0c5nfwpq0zp0bgw56cptec9t&dl=0) | [Online Appendix](https://www.dropbox.com/scl/fi/q4eqsa4sn7s2hsvxfm0b9/Appendix_MS_2022.pdf?rlkey=t4i46n4jpck2b1gv3yxz35q0p&dl=0)
 
-- *The Trade and Welfare Effects of the Belt and Road Initiative*, with Meng Gao, Chenxin Jin, Bin Sheng, and Linpu Xu,
- **Review of International Economics**, 2024, 32(2): 446–479.  
+- *The Trade and Welfare Effects of the Belt and Road Initiative*, with Meng Gao, Chenxin Jin, Bin Sheng, and Linpu Xu,<br>
+ **Review of International Economics**, 2024, 32(2): 446–479.<br>  
   [Article](https://doi.org/10.1111/roie.12698) | [Code & Data](https://www.dropbox.com/scl/fo/f5f4z6xs1402zyf39ub3i/h?rlkey=ik4sgzl0ezqqq3k8p3zba9xqe&dl=0) | [Working Paper](https://www.dropbox.com/scl/fi/q1g4ckgoajvulvttj2kes/BRI2024.pdf?rlkey=0prd3vi5wufntv0f3ka5xbx7n&dl=0)
 
 - *Geopolitics along the Value Chains*, with Renjing Chen, Chenxin Jin, Bin Sheng, and Guanxiang Wang,
