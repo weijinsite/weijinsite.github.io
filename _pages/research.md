@@ -27,7 +27,7 @@ My research fields are international economics, international trade, and interna
 
 - *Comparative Advantage and Optimal Trade Policy with Strategic Interactions*, with Mengmeng Dai, Wen-Tai Hsu, Yongjin Wang, and Siqiang Yang <br>
  **International Journal of Industrial Organization**, 2026, Volume 104, 103236 <br>
-  [Article](https://doi.org/10.1016/j.ijindorg.2025.103236) | [Code & Data](https://doi.org/10.5281/zenodo.17221922)
+  [Article](https://doi.org/10.1016/j.ijindorg.2025.103236) | [Code & Data](https://doi.org/10.7910/DVN/CV247A)
 
 - *The Depth of Preferential Trade Agreements*, with Pao-Li Chang and Kefang Yao <br>
  **IMF Economic Review**, 2025, Accepted. 
