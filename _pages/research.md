@@ -30,7 +30,8 @@ My research fields are international economics, international trade, and interna
   [Article](https://doi.org/10.1016/j.ijindorg.2025.103236) | [Code & Data](https://doi.org/10.7910/DVN/CV247A)
 
 - *The Depth of Preferential Trade Agreements*, with Pao-Li Chang and Kefang Yao <br>
- **IMF Economic Review**, 2025, Accepted. 
+ **IMF Economic Review**, 2026  <br>
+   [Article](https://doi.org/10.1057/s41308-025-00296-9) | [Code & Data](https://doi.org/10.7910/DVN/1H6RYK)
 
 - *The Olympic Effect Revisited: 1950–2019*, with Renjing Chen, Meng Gao, Wenzheng Gao, and Yuqian Sun <br>
  **World Development**, 2025, Conditionally Accepted. 
