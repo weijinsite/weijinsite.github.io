@@ -38,13 +38,17 @@ with Mengmeng Dai, Wen-Tai Hsu, Yongjin Wang, and Siqiang Yang <br>
 with Bing Yan, Shaoyu Guo, and Xiaojing Jiang<br>
 **Journal of Environmental Economics and Management**, 2026, Volume 138,  103337 <br>
   [Article](https://doi.org/10.1016/j.jeem.2026.103337)  
-
   
 - *The Depth of Preferential Trade Agreements* <br>
 with Pao-Li Chang and Kefang Yao <br>
  **IMF Economic Review**, 2026  <br>
    [Article](https://doi.org/10.1057/s41308-025-00296-9) | [Code & Data](https://doi.org/10.7910/DVN/1H6RYK)
 
+- *Guns and Gravity: Is There a Home-Market Effect in the Global Arms Trade?* <br>
+with Meng Gao, Chenxin Jin, Chaodui Shao, Danni Su, Guanxiang Wang, and Mingyang Wei <br>
+  **Review of International Economics**， 2026<br>
+    [Article](https://doi.org/10.1111/roie.70050) 
+  
 - *The Olympic Effect Revisited: 1950–2019* <br>
 with Renjing Chen, Meng Gao, Wenzheng Gao, and Yuqian Sun <br>
  **World Development**, 2026, Conditionally Accepted. 
@@ -71,8 +75,6 @@ with Bing Yan, Meng Gao, Qiugu He, Siqiang Yang, and Renjia Zhang <br>
 
 ### Working Papers
 
-
-- *Guns and Gravity: Is There a Home-Market Effect in the Global Arms Trade?*, with Meng Gao, Chenxin Jin, Chaodui Shao, Danni Su, Guanxiang Wang, and Mingyang Wei, R&R at **Review of International Economics**.
 
 - *The GATT/WTO Welfare Effects: 1950–2015*, with Pao-Li Chang and Kefang Yao, submitted.
 
