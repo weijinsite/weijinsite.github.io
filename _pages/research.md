@@ -46,7 +46,7 @@ with Pao-Li Chang and Kefang Yao <br>
 
 - *Guns and Gravity: Is There a Home-Market Effect in the Global Arms Trade?* <br>
 with Meng Gao, Chenxin Jin, Chaodui Shao, Danni Su, Guanxiang Wang, and Mingyang Wei <br>
-  **Review of International Economics**， 2026<br>
+  **Review of International Economics**, 2026<br>
     [Article](https://doi.org/10.1111/roie.70050) 
   
 - *The Olympic Effect Revisited: 1950–2019* <br>
