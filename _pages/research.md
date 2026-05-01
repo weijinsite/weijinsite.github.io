@@ -15,7 +15,7 @@ My research fields are international economics, international trade, and interna
 
 - *The Trade and Welfare Effects of the Belt and Road Initiative*, with Meng Gao, Chenxin Jin, Bin Sheng, and Linpu Xu,<br>
  **Review of International Economics**, 2024, 32(2): 446–479.<br>  
-  [Article](https://doi.org/10.1111/roie.12698) | [Code & Data](https://www.dropbox.com/scl/fo/f5f4z6xs1402zyf39ub3i/h?rlkey=ik4sgzl0ezqqq3k8p3zba9xqe&dl=0) | [Working Paper](https://www.dropbox.com/scl/fi/q1g4ckgoajvulvttj2kes/BRI2024.pdf?rlkey=0prd3vi5wufntv0f3ka5xbx7n&dl=0)
+ [Article](https://doi.org/10.1111/roie.12698) | [Code & Data](https://www.dropbox.com/scl/fo/f5f4z6xs1402zyf39ub3i/h?rlkey=ik4sgzl0ezqqq3k8p3zba9xqe&dl=0) | [Working Paper](https://www.dropbox.com/scl/fi/q1g4ckgoajvulvttj2kes/BRI2024.pdf?rlkey=0prd3vi5wufntv0f3ka5xbx7n&dl=0)
 
 - *Geopolitics along the Value Chains*, with Renjing Chen, Chenxin Jin, Bin Sheng, and Guanxiang Wang,<br>
  **China Economic Review**, 2025, Volume 90, 102341.<br>  
