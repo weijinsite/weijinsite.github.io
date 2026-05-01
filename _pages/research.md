@@ -5,7 +5,7 @@ permalink: /research/
 author_profile: true
 ---
 
-My research fields are international economics, international trade, and international business. My research focuses on trade policy, trade and welfare, global value chains, country image and soft power, international institutions, and firm behavior in the global economy.
+My research fields are international economics, international trade, and international business. My research focuses on the trade and welfare effects of international economic integration, trade policy, global value chains, international political economy, country image and soft power, Chinese economy, and the interaction between trade, institutions, and firm behavior.
 
 ### Publications
 
