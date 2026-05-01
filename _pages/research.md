@@ -55,7 +55,7 @@ with Renjing Chen and Tangrui Yang <br>
 
 - *The COVID-19 Pandemic and International Energy Trade: An Empirical Analysis Based on Gravity Model* <br>
 with Xirong Chen, Wenzheng Gao, and Yuqian Sun <br>
- **Emerging Markets Finance and Trade**, 2026 <br>
+ **Emerging Markets Finance and Trade**, 2026, 62(1):164-91 <br>
   [Article](https://doi.org/10.1080/1540496X.2025.2535708)
 
 - *From Profit to Planet: ESG's Impact on Chinese Companies' Cross-border M&A Activity* <br>
