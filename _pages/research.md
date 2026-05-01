@@ -46,22 +46,22 @@ with Renjing Chen, Meng Gao, Wenzheng Gao, and Yuqian Sun <br>
 - *Banking Shareholder and the Debt Behaviour of Chinese Real Estate Firms* <br>
 with Zhuqing Liu, Feng Qian, Ziliang Yu, and Weibiao Xu <br>
  **Applied Economics Letters**, 2026 <br> 
-  [Article](https://doi.org/10.1080/13504851.2024.2440976)
+  [Article](https://doi.org/10.1080/13504851.2025.2492847)
 
 - *Soft Power in Trade: Quantifying the Impact of Confucius Institutes on China's Exports* <br>
 with Renjing Chen and Tangrui Yang <br>
  **International Studies of Economics**, 2026 <br>
-  [Article](https://doi.org/10.1002/ise3.70019)
+  [Article]( https://doi.org/10.1002/ise3.70008)
 
 - *The COVID-19 Pandemic and International Energy Trade: An Empirical Analysis Based on Gravity Model* <br>
 with Xirong Chen, Wenzheng Gao, and Yuqian Sun <br>
  **Emerging Markets Finance and Trade**, 2026 <br>
-  [Article](https://doi.org/10.1080/1540496X.2025.2551884)
+  [Article](https://doi.org/10.1080/1540496X.2025.2535708)
 
 - *From Profit to Planet: ESG's Impact on Chinese Companies' Cross-border M&A Activity* <br>
 with Bing Yan, Meng Gao, Qiugu He, Siqiang Yang, and Renjia Zhang <br>
  **Applied Economics**, 2026 <br>
-  [Article](https://doi.org/10.1080/00036846.2025.2553651)
+  [Article](https://doi.org/10.1080/00036846.2025.2540602)
 
 ### Working Papers
 
