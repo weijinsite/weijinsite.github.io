@@ -34,22 +34,22 @@ My research fields are international economics, international trade, and interna
    [Article](https://doi.org/10.1057/s41308-025-00296-9) | [Code & Data](https://doi.org/10.7910/DVN/1H6RYK)
 
 - *The Olympic Effect Revisited: 1950–2019*, with Renjing Chen, Meng Gao, Wenzheng Gao, and Yuqian Sun <br>
- **World Development**, 2025, Conditionally Accepted. 
+ **World Development**, 2026, Conditionally Accepted. 
 
 - *Banking Shareholder and the Debt Behaviour of Chinese Real Estate Firms*, with Zhuqing Liu, Feng Qian, Ziliang Yu, and Weibiao Xu <br>
- **Applied Economics Letters**, 2025 <br> 
+ **Applied Economics Letters**, 2026 <br> 
   [Article](https://doi.org/10.1080/13504851.2024.2440976)
 
 - *Soft Power in Trade: Quantifying the Impact of Confucius Institutes on China's Exports*, with Renjing Chen and Tangrui Yang <br>
- **International Studies of Economics**, 2025 <br>
+ **International Studies of Economics**, 2026 <br>
   [Article](https://doi.org/10.1002/ise3.70019)
 
 - *The COVID-19 Pandemic and International Energy Trade: An Empirical Analysis Based on Gravity Model*, with Xirong Chen, Wenzheng Gao, and Yuqian Sun <br>
- **Emerging Markets Finance and Trade**, 2025 <br>
+ **Emerging Markets Finance and Trade**, 2026 <br>
   [Article](https://doi.org/10.1080/1540496X.2025.2551884)
 
 - *From Profit to Planet: ESG's Impact on Chinese Companies' Cross-border M&A Activity*, with Bing Yan, Meng Gao, Qiugu He, Siqiang Yang, and Renjia Zhang <br>
- **Applied Economics**, 2025 <br>
+ **Applied Economics**, 2026 <br>
   [Article](https://doi.org/10.1080/00036846.2025.2553651)
 
 ### Working Papers
