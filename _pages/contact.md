@@ -16,9 +16,8 @@ Email: wei.jin [at] nankai.edu.cn
 
 ## Address
 
-School of Economics, Nankai University  
-No. 94 Weijin Road, Nankai District  
-Tianjin 300071, P.R. China
+School of Economics, Nankai University, No. 94 Weijin Road, Nankai District, Tianjin 300071, P.R. China 
+
 
 
  
