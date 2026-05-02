@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
  
-I am an Assistant Professor at the Center for Transnational Studies and the Institute of International Economics, School of Economics, Nankai University.
+I am an Associate Professor at the Center for Transnational Studies and the Institute of International Economics, School of Economics, Nankai University.
 
 My research fields are international economics, international trade, and international business. My research focuses on the trade and welfare effects of international economic integration, trade policy, global value chains, international political economy, country image and soft power, Chinese economy, and the interaction between trade, institutions, and firm behavior.
  
