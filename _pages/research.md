@@ -12,7 +12,7 @@ My research fields are international economics, international trade, and interna
 - *Good Names Beget Favors: The Impact of Country Image on Trade Flows and Welfare*<br>
   with Pao-Li Chang and Tomoki Fujii <br>
    **Management Science**, 2022, 68(10): 7555–7596 <br>
-  [Article](https://doi.org/10.1287/mnsc.2021.4231) | [Code & Data](https://www.dropbox.com/scl/fi/8rf9qsncoahcfmi4dk32y/pipa-data-MS.zip?rlkey=02gm1a3cnt74k0gy2loqy7ise&dl=0) | [Working Paper](https://www.dropbox.com/scl/fi/609v7w29r16slwdxl1adj/pipa-paper.pdf?rlkey=olc3190sqiap4q90tab7uuubn&dl=0) | [Online Appendix](https://www.dropbox.com/scl/fi/t2ejnl2qkmxhyjjwo7j5q/pipa-paper-online-appendix.pdf?rlkey=1ytgmexn45ypowojaz5o5jija&dl=0)
+  [Article](https://doi.org/10.1287/mnsc.2021.4231) | [Code & Data](https://doi.org/10.7910/DVN/CQUBJ3) | [Working Paper](https://www.dropbox.com/scl/fi/609v7w29r16slwdxl1adj/pipa-paper.pdf?rlkey=olc3190sqiap4q90tab7uuubn&dl=0) | [Online Appendix](https://www.dropbox.com/scl/fi/t2ejnl2qkmxhyjjwo7j5q/pipa-paper-online-appendix.pdf?rlkey=1ytgmexn45ypowojaz5o5jija&dl=0)
 
 - *The Trade and Welfare Effects of the Belt and Road Initiative* <br>
 with Meng Gao, Chenxin Jin, Bin Sheng, and Linpu Xu <br>
