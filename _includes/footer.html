@@ -180,22 +180,18 @@
   </script>
 
   <!-- ===================================================== -->
-  <!-- 个人网站访客记录程序                                  -->
+  <!-- 个人网站访客记录程序：Beacon v3                      -->
   <!-- GitHub 路径：_includes/footer.html                    -->
   <!-- ===================================================== -->
   <script>
   (function () {
     'use strict';
 
-    /*
-     * 只使用 Web App 的 /exec 地址。
-     * 不要使用 macros/library/... 地址；library 地址不是接收访问数据的接口。
-     */
     const LOGGER_URL =
       'https://script.google.com/macros/s/AKfycbzLk5e6atghY1TAHCqYK2gtUU_a6RPdIlWXaOoCRZ6j2NABNxZbsaGvAN52K0-ICiWjyQ/exec';
 
     const SOURCE_SITE = 'weijinsite.github.io';
-    const LOGGER_VERSION = '2026-07-24-v2';
+    const LOGGER_VERSION = '2026-07-24-v3-beacon';
 
     const IPPURE_URL = 'https://my.ippure.com/v1/info';
     const IPWHO_URL = 'https://ipwho.is/';
@@ -203,7 +199,8 @@
 
     const VISITOR_ID_KEY = 'weijin_visitor_id';
     const SESSION_ID_KEY = 'weijin_session_id';
-    const REQUEST_TIMEOUT_MS = 5000;
+    const IP_TIMEOUT_MS = 3500;
+    const OVERALL_IP_WAIT_MS = 4200;
 
     function createRandomId() {
       if (
@@ -215,8 +212,8 @@
 
       return (
         Date.now().toString(36) + '-' +
-        Math.random().toString(36).substring(2) + '-' +
-        Math.random().toString(36).substring(2)
+        Math.random().toString(36).slice(2) + '-' +
+        Math.random().toString(36).slice(2)
       );
     }
 
@@ -235,14 +232,6 @@
       }
     }
 
-    function getBrowserTimezone() {
-      try {
-        return Intl.DateTimeFormat().resolvedOptions().timeZone || '';
-      } catch (error) {
-        return '';
-      }
-    }
-
     function shouldSkipLogging() {
       try {
         const parameters = new URLSearchParams(window.location.search);
@@ -251,13 +240,40 @@
           return true;
         }
       } catch (error) {
-        // URLSearchParams 不可用时继续记录。
+        // 继续记录。
       }
 
       return window.location.hostname !== SOURCE_SITE;
     }
 
-    async function fetchJson(url, options) {
+    function browserTimezone() {
+      try {
+        return Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+      } catch (error) {
+        return '';
+      }
+    }
+
+    function simpleHash(text) {
+      let first = 2166136261;
+      let second = 16777619;
+
+      for (let index = 0; index < text.length; index += 1) {
+        const code = text.charCodeAt(index);
+        first ^= code;
+        first = Math.imul(first, 16777619);
+        second ^= code + index;
+        second = Math.imul(second, 2246822519);
+      }
+
+      return (
+        'fp-' +
+        (first >>> 0).toString(16).padStart(8, '0') +
+        (second >>> 0).toString(16).padStart(8, '0')
+      );
+    }
+
+    async function fetchJson(url, timeoutMs) {
       const controller =
         typeof AbortController !== 'undefined'
           ? new AbortController()
@@ -266,27 +282,20 @@
       const timer = controller
         ? window.setTimeout(function () {
             controller.abort();
-          }, REQUEST_TIMEOUT_MS)
+          }, timeoutMs)
         : null;
 
       try {
-        const requestOptions = Object.assign(
-          {
-            method: 'GET',
-            cache: 'no-store',
-            credentials: 'omit'
-          },
-          options || {}
-        );
-
-        if (controller) {
-          requestOptions.signal = controller.signal;
-        }
-
-        const response = await fetch(url, requestOptions);
+        const response = await fetch(url, {
+          method: 'GET',
+          mode: 'cors',
+          cache: 'no-store',
+          credentials: 'omit',
+          signal: controller ? controller.signal : undefined
+        });
 
         if (!response.ok) {
-          throw new Error('HTTP ' + response.status + ' from ' + url);
+          throw new Error('HTTP ' + response.status);
         }
 
         return await response.json();
@@ -297,207 +306,271 @@
       }
     }
 
-    function fillMissing(object, field, value) {
-      if (
-        (
-          object[field] === undefined ||
-          object[field] === null ||
-          object[field] === ''
-        ) &&
-        value !== undefined &&
-        value !== null &&
-        value !== ''
-      ) {
-        object[field] = value;
+    function nonEmpty(value) {
+      return value !== undefined && value !== null && value !== '';
+    }
+
+    function fill(target, key, value) {
+      if (!nonEmpty(target[key]) && nonEmpty(value)) {
+        target[key] = value;
       }
     }
 
-    function normalizeIpPure(raw) {
-      raw = raw && typeof raw === 'object' ? raw : {};
+    function unwrap(raw) {
+      if (!raw || typeof raw !== 'object') {
+        return {};
+      }
 
-      return {
-        ip: raw.ip || '',
-        apiSource: 'IPPure',
-        asn: raw.asn !== undefined ? raw.asn : '',
-        asOrganization:
-          raw.asOrganization ||
-          raw.organization ||
-          raw.org ||
-          raw.isp ||
-          '',
-        country: raw.country || '',
-        countryCode: raw.countryCode || raw.country_code || '',
-        region: raw.region || '',
-        regionCode: raw.regionCode || raw.region_code || '',
-        city: raw.city || '',
-        postalCode: raw.postalCode || raw.postal || raw.zip || '',
-        continent: raw.continent || '',
-        ipType: raw.ipType || raw.type || '',
-        timezone: raw.timezone || '',
-        longitude: raw.longitude !== undefined ? raw.longitude : '',
-        latitude: raw.latitude !== undefined ? raw.latitude : '',
-        fraudScore: raw.fraudScore !== undefined ? raw.fraudScore : '',
-        isResidential:
-          raw.isResidential !== undefined ? raw.isResidential : '',
-        isBroadcast:
-          raw.isBroadcast !== undefined ? raw.isBroadcast : '',
-        userAgent: raw.userAgent || ''
-      };
+      if (raw.data && typeof raw.data === 'object') {
+        return raw.data;
+      }
+
+      if (raw.result && typeof raw.result === 'object') {
+        return raw.result;
+      }
+
+      return raw;
     }
 
-    function mergeIpWho(base, raw) {
-      if (
-        !raw ||
-        typeof raw !== 'object' ||
-        raw.success === false
-      ) {
+    function mergeIpPure(target, raw) {
+      const value = unwrap(raw);
+
+      fill(target, 'ip', value.ip);
+      fill(target, 'asn', value.asn);
+      fill(
+        target,
+        'asOrganization',
+        value.asOrganization ||
+          value.organization ||
+          value.org ||
+          value.isp
+      );
+      fill(target, 'country', value.country);
+      fill(
+        target,
+        'countryCode',
+        value.countryCode || value.country_code
+      );
+      fill(target, 'region', value.region);
+      fill(
+        target,
+        'regionCode',
+        value.regionCode || value.region_code
+      );
+      fill(target, 'city', value.city);
+      fill(
+        target,
+        'postalCode',
+        value.postalCode || value.postal || value.zip
+      );
+      fill(target, 'continent', value.continent);
+      fill(target, 'ipType', value.ipType || value.type);
+      fill(
+        target,
+        'timezone',
+        typeof value.timezone === 'object'
+          ? value.timezone.id
+          : value.timezone
+      );
+      fill(target, 'longitude', value.longitude);
+      fill(target, 'latitude', value.latitude);
+      fill(target, 'fraudScore', value.fraudScore);
+      fill(target, 'isResidential', value.isResidential);
+      fill(target, 'isBroadcast', value.isBroadcast);
+      fill(target, 'userAgent', value.userAgent);
+    }
+
+    function mergeIpWho(target, raw) {
+      const value = unwrap(raw);
+
+      if (value.success === false) {
         return;
       }
 
-      fillMissing(base, 'ip', raw.ip);
-      fillMissing(base, 'country', raw.country);
-      fillMissing(base, 'countryCode', raw.country_code);
-      fillMissing(base, 'region', raw.region);
-      fillMissing(base, 'regionCode', raw.region_code);
-      fillMissing(base, 'city', raw.city);
-      fillMissing(base, 'postalCode', raw.postal);
-      fillMissing(base, 'continent', raw.continent);
-      fillMissing(base, 'ipType', raw.type);
-      fillMissing(base, 'longitude', raw.longitude);
-      fillMissing(base, 'latitude', raw.latitude);
+      fill(target, 'ip', value.ip);
+      fill(target, 'country', value.country);
+      fill(target, 'countryCode', value.country_code);
+      fill(target, 'region', value.region);
+      fill(target, 'regionCode', value.region_code);
+      fill(target, 'city', value.city);
+      fill(target, 'postalCode', value.postal);
+      fill(target, 'continent', value.continent);
+      fill(target, 'ipType', value.type);
+      fill(target, 'longitude', value.longitude);
+      fill(target, 'latitude', value.latitude);
 
-      if (raw.timezone && typeof raw.timezone === 'object') {
-        fillMissing(base, 'timezone', raw.timezone.id);
+      if (value.timezone && typeof value.timezone === 'object') {
+        fill(target, 'timezone', value.timezone.id);
       }
 
-      if (raw.connection && typeof raw.connection === 'object') {
-        fillMissing(base, 'asn', raw.connection.asn);
-        fillMissing(
-          base,
+      if (value.connection && typeof value.connection === 'object') {
+        fill(target, 'asn', value.connection.asn);
+        fill(
+          target,
           'asOrganization',
-          raw.connection.org || raw.connection.isp
+          value.connection.org || value.connection.isp
         );
       }
-
-      if (base.apiSource) {
-        if (base.apiSource.indexOf('ipwho.is') === -1) {
-          base.apiSource += ' + ipwho.is';
-        }
-      } else {
-        base.apiSource = 'ipwho.is';
-      }
     }
 
-    function needsGeoFallback(data) {
-      return (
-        !data.ip ||
-        !data.country ||
-        !data.region ||
-        !data.city ||
-        !data.asn ||
-        !data.asOrganization
-      );
-    }
-
-    async function getIpInformation() {
-      let data = {};
+    async function collectIpInformation() {
+      const result = {};
       const errors = [];
 
-      try {
-        data = normalizeIpPure(await fetchJson(IPPURE_URL));
-      } catch (error) {
-        errors.push(
-          'IPPure: ' +
-          String(error && error.message ? error.message : error)
-        );
-        data = { apiSource: '' };
+      const requests = await Promise.allSettled([
+        fetchJson(IPPURE_URL, IP_TIMEOUT_MS),
+        fetchJson(IPWHO_URL, IP_TIMEOUT_MS),
+        fetchJson(IPIFY_URL, IP_TIMEOUT_MS)
+      ]);
+
+      if (requests[0].status === 'fulfilled') {
+        mergeIpPure(result, requests[0].value);
+      } else {
+        errors.push('IPPure: ' + String(requests[0].reason));
       }
 
-      if (needsGeoFallback(data)) {
-        try {
-          const ipWhoRequestUrl = data.ip
-            ? IPWHO_URL + encodeURIComponent(data.ip)
-            : IPWHO_URL;
-
-          const ipWhoRaw = await fetchJson(ipWhoRequestUrl);
-
-          if (ipWhoRaw && ipWhoRaw.success === false) {
-            throw new Error(ipWhoRaw.message || 'ipwho.is lookup failed');
-          }
-
-          mergeIpWho(data, ipWhoRaw);
-        } catch (error) {
-          errors.push(
-            'ipwho.is: ' +
-            String(error && error.message ? error.message : error)
-          );
-        }
+      if (requests[1].status === 'fulfilled') {
+        mergeIpWho(result, requests[1].value);
+      } else {
+        errors.push('ipwho.is: ' + String(requests[1].reason));
       }
 
-      if (!data.ip) {
-        try {
-          const ipifyRaw = await fetchJson(IPIFY_URL);
-
-          if (ipifyRaw && ipifyRaw.ip) {
-            data.ip = ipifyRaw.ip;
-            data.apiSource = data.apiSource
-              ? data.apiSource + ' + ipify'
-              : 'ipify';
-          }
-        } catch (error) {
-          errors.push(
-            'ipify: ' +
-            String(error && error.message ? error.message : error)
-          );
-        }
+      if (
+        requests[2].status === 'fulfilled' &&
+        requests[2].value &&
+        requests[2].value.ip
+      ) {
+        fill(result, 'ip', requests[2].value.ip);
+      } else if (requests[2].status === 'rejected') {
+        errors.push('ipify: ' + String(requests[2].reason));
       }
+
+      const sources = [];
+
+      if (requests[0].status === 'fulfilled') {
+        sources.push('IPPure');
+      }
+
+      if (requests[1].status === 'fulfilled') {
+        sources.push('ipwho.is');
+      }
+
+      if (requests[2].status === 'fulfilled') {
+        sources.push('ipify');
+      }
+
+      result.apiSource = sources.join(' + ');
 
       return {
-        data: data,
+        data: result,
         error: errors.join('; ')
       };
     }
 
-    async function hashText(text) {
-      if (
-        window.crypto &&
-        window.crypto.subtle &&
-        window.TextEncoder
-      ) {
-        const bytes = new TextEncoder().encode(text);
-        const digest = await window.crypto.subtle.digest('SHA-256', bytes);
+    function collectBasePayload() {
+      const connection =
+        navigator.connection ||
+        navigator.mozConnection ||
+        navigator.webkitConnection ||
+        {};
 
-        return Array.from(new Uint8Array(digest))
-          .map(function (byte) {
-            return byte.toString(16).padStart(2, '0');
-          })
-          .join('');
-      }
+      const languages = Array.isArray(navigator.languages)
+        ? navigator.languages
+        : [];
 
-      let hash = 0;
+      const screenWidth =
+        window.screen && window.screen.width
+          ? window.screen.width
+          : '';
 
-      for (let i = 0; i < text.length; i++) {
-        hash = ((hash << 5) - hash) + text.charCodeAt(i);
-        hash |= 0;
-      }
+      const screenHeight =
+        window.screen && window.screen.height
+          ? window.screen.height
+          : '';
 
-      return 'legacy-' + Math.abs(hash);
+      const screenResolution =
+        screenWidth && screenHeight
+          ? screenWidth + 'x' + screenHeight
+          : '';
+
+      const fingerprintSource = JSON.stringify({
+        userAgent: navigator.userAgent || '',
+        language: navigator.language || '',
+        languages: languages,
+        platform: navigator.platform || '',
+        screenResolution: screenResolution,
+        colorDepth: window.screen ? window.screen.colorDepth : '',
+        devicePixelRatio: window.devicePixelRatio || '',
+        timezone: browserTimezone(),
+        hardwareConcurrency: navigator.hardwareConcurrency || '',
+        deviceMemory: navigator.deviceMemory || '',
+        maxTouchPoints: navigator.maxTouchPoints || 0
+      });
+
+      return {
+        sourceSite: SOURCE_SITE,
+        loggerVersion: LOGGER_VERSION,
+        clientTimestamp: new Date().toISOString(),
+        visitorId: getOrCreateStorageId(
+          window.localStorage,
+          VISITOR_ID_KEY
+        ),
+        sessionId: getOrCreateStorageId(
+          window.sessionStorage,
+          SESSION_ID_KEY
+        ),
+        eventId: createRandomId(),
+        pageTitle: document.title || '',
+        pageUrl: window.location.href,
+        path:
+          window.location.pathname +
+          window.location.search +
+          window.location.hash,
+        referrer: document.referrer || '',
+        browserUserAgent: navigator.userAgent || '',
+        language: navigator.language || '',
+        languages: languages,
+        platform: navigator.platform || '',
+        screenResolution: screenResolution,
+        viewport: window.innerWidth + 'x' + window.innerHeight,
+        colorDepth: window.screen ? window.screen.colorDepth : '',
+        devicePixelRatio: window.devicePixelRatio || '',
+        browserTimezone: browserTimezone(),
+        hardwareConcurrency: navigator.hardwareConcurrency || '',
+        deviceMemory: navigator.deviceMemory || '',
+        maxTouchPoints: navigator.maxTouchPoints || 0,
+        cookieEnabled: navigator.cookieEnabled,
+        doNotTrack:
+          navigator.doNotTrack ||
+          window.doNotTrack ||
+          navigator.msDoNotTrack ||
+          '',
+        connectionType: connection.type || '',
+        effectiveType: connection.effectiveType || '',
+        downlinkMbps:
+          connection.downlink !== undefined
+            ? connection.downlink
+            : '',
+        rttMs:
+          connection.rtt !== undefined
+            ? connection.rtt
+            : '',
+        saveData:
+          connection.saveData !== undefined
+            ? connection.saveData
+            : '',
+        fingerprintId: simpleHash(fingerprintSource)
+      };
     }
 
-    /*
-     * 使用隐藏表单提交，而不是跨域 fetch。
-     *
-     * Google Apps Script 会从 e.parameter 读取这些字段。
-     * 普通表单 POST 不依赖 CORS，也不会因为 /exec 的重定向而静默失败。
-     */
-    async function sendLog(payload) {
+    function submitWithHiddenForm(payload) {
       try {
-        const token = createRandomId().replace(/[^a-zA-Z0-9_-]/g, '');
-        const frameName = 'visitor_log_frame_' + token;
+        const frameName =
+          'weijin_log_' +
+          createRandomId().replace(/[^a-zA-Z0-9_-]/g, '');
 
         const iframe = document.createElement('iframe');
         iframe.name = frameName;
-        iframe.title = 'Visitor logging';
         iframe.setAttribute('aria-hidden', 'true');
         iframe.style.display = 'none';
 
@@ -505,173 +578,188 @@
         form.method = 'POST';
         form.action = LOGGER_URL;
         form.target = frameName;
+        form.enctype = 'application/x-www-form-urlencoded';
         form.acceptCharset = 'UTF-8';
         form.style.display = 'none';
 
         Object.keys(payload).forEach(function (key) {
           let value = payload[key];
 
-          if (value === undefined || value === null) {
-            value = '';
-          } else if (Array.isArray(value)) {
+          if (Array.isArray(value)) {
             value = value.join(', ');
-          } else if (typeof value === 'object') {
-            try {
-              value = JSON.stringify(value);
-            } catch (error) {
-              value = String(value);
-            }
+          } else if (
+            value &&
+            typeof value === 'object'
+          ) {
+            value = JSON.stringify(value);
           }
 
           const input = document.createElement('input');
           input.type = 'hidden';
           input.name = key;
-          input.value = String(value);
+          input.value =
+            value === undefined || value === null
+              ? ''
+              : String(value);
+
           form.appendChild(input);
         });
 
         document.body.appendChild(iframe);
         document.body.appendChild(form);
-
         form.submit();
 
         window.setTimeout(function () {
-          if (form.parentNode) {
-            form.parentNode.removeChild(form);
-          }
+          form.remove();
+          iframe.remove();
+        }, 20000);
 
-          if (iframe.parentNode) {
-            iframe.parentNode.removeChild(iframe);
-          }
-        }, 15000);
-
-        console.log('Visitor log submitted to Google Apps Script.');
         return true;
       } catch (error) {
-        console.error('Visitor logging failed:', error);
+        console.error('[visitor-log] form failed:', error);
         return false;
       }
     }
 
-    async function logVisitor() {
-      try {
-        if (shouldSkipLogging()) {
-          return;
+    function submitPayload(payload) {
+      const json = JSON.stringify(payload);
+
+      /*
+       * sendBeacon 是首选：
+       * 1. 适合页面访问日志；
+       * 2. 允许跨域发送；
+       * 3. 页面关闭时仍会尽力完成发送；
+       * 4. 使用 text/plain，可被 Apps Script 的 doPost(e) 解析。
+       */
+      if (navigator.sendBeacon) {
+        try {
+          const blob = new Blob(
+            [json],
+            { type: 'text/plain;charset=UTF-8' }
+          );
+
+          if (navigator.sendBeacon(LOGGER_URL, blob)) {
+            console.info('[visitor-log] beacon queued');
+            return true;
+          }
+        } catch (error) {
+          console.warn('[visitor-log] beacon failed:', error);
         }
+      }
 
-        const visitorId = getOrCreateStorageId(
-          window.localStorage,
-          VISITOR_ID_KEY
-        );
-        const sessionId = getOrCreateStorageId(
-          window.sessionStorage,
-          SESSION_ID_KEY
-        );
-        const eventId = createRandomId();
-        const ipResult = await getIpInformation();
-        const ipInfo = ipResult.data || {};
-        const connection =
-          navigator.connection ||
-          navigator.mozConnection ||
-          navigator.webkitConnection ||
-          {};
+      if (submitWithHiddenForm(payload)) {
+        console.info('[visitor-log] form submitted');
+        return true;
+      }
 
-        const screenWidth =
-          window.screen && window.screen.width
-            ? window.screen.width
-            : '';
-        const screenHeight =
-          window.screen && window.screen.height
-            ? window.screen.height
-            : '';
-        const screenResolution =
-          screenWidth && screenHeight
-            ? screenWidth + 'x' + screenHeight
-            : '';
-        const viewport = window.innerWidth + 'x' + window.innerHeight;
-        const browserTimezone = getBrowserTimezone();
-        const languages = Array.isArray(navigator.languages)
-          ? navigator.languages
-          : [];
-
-        const fingerprintComponents = {
-          userAgent: navigator.userAgent || '',
-          language: navigator.language || '',
-          languages: languages,
-          platform: navigator.platform || '',
-          screenResolution: screenResolution,
-          colorDepth: window.screen ? window.screen.colorDepth : '',
-          devicePixelRatio: window.devicePixelRatio || '',
-          timezone: browserTimezone,
-          hardwareConcurrency: navigator.hardwareConcurrency || '',
-          deviceMemory: navigator.deviceMemory || '',
-          maxTouchPoints: navigator.maxTouchPoints || 0
-        };
-
-        const fingerprintId = await hashText(
-          JSON.stringify(fingerprintComponents)
-        );
-
-        const payload = Object.assign({}, ipInfo, {
-          sourceSite: SOURCE_SITE,
-          loggerVersion: LOGGER_VERSION,
-          clientTimestamp: new Date().toISOString(),
-          visitorId: visitorId,
-          sessionId: sessionId,
-          eventId: eventId,
-          pageTitle: document.title || '',
-          pageUrl: window.location.href,
-          path:
-            window.location.pathname +
-            window.location.search +
-            window.location.hash,
-          referrer: document.referrer || '',
-          browserUserAgent: navigator.userAgent || '',
-          language: navigator.language || '',
-          languages: languages,
-          platform: navigator.platform || '',
-          screenResolution: screenResolution,
-          viewport: viewport,
-          colorDepth: window.screen ? window.screen.colorDepth : '',
-          devicePixelRatio: window.devicePixelRatio || '',
-          browserTimezone: browserTimezone,
-          hardwareConcurrency: navigator.hardwareConcurrency || '',
-          deviceMemory: navigator.deviceMemory || '',
-          maxTouchPoints: navigator.maxTouchPoints || 0,
-          cookieEnabled: navigator.cookieEnabled,
-          doNotTrack:
-            navigator.doNotTrack ||
-            window.doNotTrack ||
-            navigator.msDoNotTrack ||
-            '',
-          connectionType: connection.type || '',
-          effectiveType: connection.effectiveType || '',
-          downlinkMbps:
-            connection.downlink !== undefined ? connection.downlink : '',
-          rttMs: connection.rtt !== undefined ? connection.rtt : '',
-          saveData:
-            connection.saveData !== undefined ? connection.saveData : '',
-          fingerprintId: fingerprintId,
-          apiError: ipResult.error || ''
+      /*
+       * 最后兜底。no-cors 无法读取响应，但可尝试完成 POST。
+       */
+      try {
+        fetch(LOGGER_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          cache: 'no-store',
+          credentials: 'omit',
+          keepalive: true,
+          headers: {
+            'Content-Type': 'text/plain;charset=UTF-8'
+          },
+          body: json
         });
 
-        await sendLog(payload);
+        console.info('[visitor-log] fetch fallback queued');
+        return true;
       } catch (error) {
-        console.error('Visitor logging failed:', error);
+        console.error('[visitor-log] all methods failed:', error);
+        return false;
       }
     }
 
-    function scheduleVisitorLog() {
-      window.setTimeout(function () {
-        logVisitor();
-      }, 300);
+    function timeoutResult(milliseconds) {
+      return new Promise(function (resolve) {
+        window.setTimeout(function () {
+          resolve({
+            data: {},
+            error: 'IP lookup exceeded ' + milliseconds + ' ms'
+          });
+        }, milliseconds);
+      });
     }
 
-    if (document.readyState === 'complete') {
-      scheduleVisitorLog();
-    } else {
-      window.addEventListener('load', scheduleVisitorLog, { once: true });
+    async function logVisitor() {
+      if (shouldSkipLogging()) {
+        return;
+      }
+
+      try {
+        const basePayload = collectBasePayload();
+
+        /*
+         * 最多等待约 4.2 秒。
+         * 即使三个 IP 服务都不可用，也会照常写入页面和设备信息。
+         */
+        const ipResult = await Promise.race([
+          collectIpInformation(),
+          timeoutResult(OVERALL_IP_WAIT_MS)
+        ]);
+
+        const payload = Object.assign(
+          {},
+          ipResult && ipResult.data ? ipResult.data : {},
+          basePayload,
+          {
+            apiError:
+              ipResult && ipResult.error
+                ? ipResult.error
+                : ''
+          }
+        );
+
+        submitPayload(payload);
+      } catch (error) {
+        /*
+         * 任何 IP 或设备信息错误都不能阻止基础访问记录写入。
+         */
+        const emergencyPayload = collectBasePayload();
+        emergencyPayload.apiError =
+          'Front-end logger error: ' +
+          String(error && error.message ? error.message : error);
+
+        submitPayload(emergencyPayload);
+      }
     }
+
+    function startLogger() {
+      window.setTimeout(logVisitor, 150);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener(
+        'DOMContentLoaded',
+        startLogger,
+        { once: true }
+      );
+    } else {
+      startLogger();
+    }
+
+    /*
+     * 便于在浏览器 Console 手动测试：
+     * window.weijinVisitorLogger.test()
+     */
+    window.weijinVisitorLogger = {
+      version: LOGGER_VERSION,
+      test: function () {
+        const payload = collectBasePayload();
+        payload.loggerVersion = LOGGER_VERSION + '-manual-test';
+        payload.path = '/manual-footer-test';
+        payload.pageTitle = 'Manual footer test';
+        payload.apiError = '';
+
+        return submitPayload(payload);
+      }
+    };
   })();
   </script>
 
