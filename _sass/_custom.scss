@@ -322,3 +322,7 @@ html[data-theme='dark'] #theme-toggle svg {
     color: #e0e0e0;
   }
 }
+/* 缩小 Publications 下的文章信息，保留栏目标题字号 */
+.archive #publications + ul {
+  font-size: 0.9em;
+}
