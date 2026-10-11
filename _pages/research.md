@@ -51,7 +51,8 @@ with Meng Gao, Chenxin Jin, Chaodui Shao, Danni Su, Guanxiang Wang, and Mingyang
   
 - *The Olympic Effect Revisited: 1950–2019* <br>
 with Renjing Chen, Meng Gao, Wenzheng Gao, and Yuqian Sun <br>
- **World Development**, 2026.<br>
+ **World Development**, 2026 <br>
+ [Article](https://doi.org/10.1016/j.worlddev.2026.107569)
 
 - *Banking Shareholder and the Debt Behaviour of Chinese Real Estate Firms* <br>
 with Zhuqing Liu, Feng Qian, Ziliang Yu, and Weibiao Xu <br>
