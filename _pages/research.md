@@ -73,12 +73,3 @@ with Xirong Chen, Wenzheng Gao, and Yuqian Sun <br>
 with Bing Yan, Meng Gao, Qiugu He, Siqiang Yang, and Renjia Zhang <br>
  **Applied Economics**, 2026 <br>
   [Article](https://doi.org/10.1080/00036846.2025.2540602)
-
-### Working Papers
-
-
-- *The GATT/WTO Welfare Effects: 1950–2015*, with Pao-Li Chang and Kefang Yao, submitted.
-
-- *Disentangling the Effects of GATT/WTO on Variable and Fixed Trade Costs: Trade Status, Trade Margins, and Export Sales Distribution*, with Pao-Li Chang and Renjing Chen, submitted.
-
-- *Diligence Redeems Stupidity: Managerial Effort Makes a Difference*, with Renjing Chen, Yuting Chen, Meng Gao, and Jiantong Li.
